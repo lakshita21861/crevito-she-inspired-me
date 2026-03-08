@@ -1,0 +1,987 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>She Inspires Wall – Celebrate Women Who Changed Our Lives</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Nunito:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-soft-purple: #9B7BB8;
+      --color-light-pink: #F8E8EE;
+      --color-blush: #F5D0E0;
+      --color-cream: #FFFBFC;
+      --color-text: #4A3F55;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-light-pink) 50%, var(--color-blush) 100%);
+      color: var(--color-text);
+    }
+    
+    .app-wrapper {
+      width: 100%;
+      min-height: 100%;
+      overflow-y: auto;
+    }
+    
+    .font-display {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    
+    .card-gradient {
+      background: linear-gradient(135deg, #E8D5E0 0%, #F5E6EC 50%, #FCF4F7 100%);
+    }
+    
+    .card-gradient-2 {
+      background: linear-gradient(135deg, #D4C1E0 0%, #E8D8F0 50%, #F8F0FC 100%);
+    }
+    
+    .card-gradient-3 {
+      background: linear-gradient(135deg, #F0D4E4 0%, #FCE8F0 50%, #FFF8FB 100%);
+    }
+    
+    .soft-shadow {
+      box-shadow: 0 8px 32px rgba(155, 123, 184, 0.15);
+    }
+    
+    .hover-lift {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(155, 123, 184, 0.25);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--color-soft-purple) 0%, #B794C7 100%);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #8A6AA7 0%, #A683B6 100%);
+      transform: scale(1.02);
+    }
+    
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.8);
+      border: 2px solid var(--color-soft-purple);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+      background: var(--color-soft-purple);
+      color: white;
+    }
+    
+    .input-field {
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+    
+    .input-field:focus {
+      border-color: var(--color-soft-purple);
+      box-shadow: 0 0 0 4px rgba(155, 123, 184, 0.15);
+      outline: none;
+    }
+    
+    .masonry-grid {
+      column-count: 1;
+      column-gap: 1.5rem;
+    }
+    
+    @media (min-width: 640px) {
+      .masonry-grid {
+        column-count: 2;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .masonry-grid {
+        column-count: 3;
+      }
+    }
+    
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1.5rem;
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .pulse-soft {
+      animation: pulseSoft 2s infinite;
+    }
+    
+    @keyframes pulseSoft {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+    
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .share-btn {
+      transition: all 0.3s ease;
+    }
+    
+    .share-btn:hover {
+      transform: scale(1.1);
+    }
+    
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--color-soft-purple);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    
+    .decorative-flower {
+      position: absolute;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    
+    .scroll-smooth {
+      scroll-behavior: smooth;
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+ </head>
+ <body class="h-full">
+  <div class="app-wrapper scroll-smooth"><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex items-center justify-between h-16">
+      <div class="flex items-center gap-2">
+       <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center"><i data-lucide="heart" class="w-5 h-5 text-white"></i>
+       </div><span class="font-display text-xl font-bold text-purple-800">She Inspires</span>
+      </div>
+      <div class="hidden md:flex items-center gap-6"><a href="#create" class="text-gray-600 hover:text-purple-700 transition-colors">Create Card</a> <a href="#wall" class="text-gray-600 hover:text-purple-700 transition-colors">Inspiration Wall</a> <a href="#featured" class="text-gray-600 hover:text-purple-700 transition-colors">Featured</a> <a href="#premium" class="btn-primary text-white px-4 py-2 rounded-full text-sm font-medium">Premium</a>
+      </div><button class="md:hidden p-2" onclick="toggleMobileMenu()"> <i data-lucide="menu" class="w-6 h-6 text-purple-700"></i> </button>
+     </div>
+    </div><!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+     <div class="px-4 py-3 space-y-2"><a href="#create" class="block py-2 text-gray-600 hover:text-purple-700">Create Card</a> <a href="#wall" class="block py-2 text-gray-600 hover:text-purple-700">Inspiration Wall</a> <a href="#featured" class="block py-2 text-gray-600 hover:text-purple-700">Featured</a> <a href="#premium" class="block py-2 text-purple-700 font-medium">Premium</a>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section class="relative pt-24 pb-16 px-4 overflow-hidden"><!-- Decorative Elements -->
+    <div class="decorative-flower top-20 left-10 float" style="animation-delay: 0s;">
+     <svg width="60" height="60" viewbox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="20" fill="#E8D5E0" /> <circle cx="30" cy="10" r="10" fill="#F5D0E0" /> <circle cx="50" cy="30" r="10" fill="#F5D0E0" /> <circle cx="30" cy="50" r="10" fill="#F5D0E0" /> <circle cx="10" cy="30" r="10" fill="#F5D0E0" />
+     </svg>
+    </div>
+    <div class="decorative-flower top-40 right-20 float" style="animation-delay: 1s;">
+     <svg width="40" height="40" viewbox="0 0 40 40" fill="none"><path d="M20 5C20 5 25 15 35 20C25 25 20 35 20 35C20 35 15 25 5 20C15 15 20 5 20 5Z" fill="#D4C1E0" />
+     </svg>
+    </div>
+    <div class="decorative-flower bottom-20 left-1/4 float" style="animation-delay: 0.5s;">
+     <svg width="30" height="30" viewbox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="15" fill="#F0D4E4" />
+     </svg>
+    </div>
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+     <div class="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full mb-6 fade-in"><i data-lucide="sparkles" class="w-4 h-4 text-purple-600"></i> <span class="text-sm text-purple-700 font-medium">International Women's Day Special</span>
+     </div>
+     <h1 id="heroHeadline" class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-purple-900 mb-6 leading-tight fade-in" style="animation-delay: 0.1s;">Celebrate the Women Who Changed Our Lives</h1>
+     <p id="heroSubheading" class="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto fade-in" style="animation-delay: 0.2s;">Write a message for a woman who inspired you and create a beautiful shareable card.</p><a href="#create" id="ctaButton" class="inline-flex items-center gap-2 btn-primary text-white px-8 py-4 rounded-full text-lg font-semibold soft-shadow fade-in" style="animation-delay: 0.3s;"> <i data-lucide="pen-tool" class="w-5 h-5"></i> <span id="ctaButtonText">Create Your Inspiration Card</span> </a>
+     <div class="flex items-center justify-center gap-8 mt-12 fade-in" style="animation-delay: 0.4s;">
+      <div class="text-center">
+       <div id="cardCount" class="font-display text-3xl font-bold text-purple-800">
+        0
+       </div>
+       <div class="text-sm text-gray-500">
+        Cards Created
+       </div>
+      </div>
+      <div class="w-px h-12 bg-purple-200"></div>
+      <div class="text-center">
+       <div class="font-display text-3xl font-bold text-purple-800">
+        50+
+       </div>
+       <div class="text-sm text-gray-500">
+        Countries
+       </div>
+      </div>
+      <div class="w-px h-12 bg-purple-200"></div>
+      <div class="text-center">
+       <div class="font-display text-3xl font-bold text-purple-800">
+        ∞
+       </div>
+       <div class="text-sm text-gray-500">
+        Inspiration
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Message Generator Section -->
+   <section id="create" class="py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-12">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-purple-900 mb-4">Create Your Card</h2>
+      <p class="text-gray-600">Share your gratitude with a beautifully designed card</p>
+     </div>
+     <div class="grid lg:grid-cols-2 gap-8 items-start"><!-- Form -->
+      <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 soft-shadow">
+       <form id="cardForm" class="space-y-5">
+        <div><label for="yourName" class="block text-sm font-medium text-gray-700 mb-2">Your Name</label> <input type="text" id="yourName" name="yourName" placeholder="Enter your name" class="input-field w-full px-4 py-3 rounded-xl" required>
+        </div>
+        <div><label for="herName" class="block text-sm font-medium text-gray-700 mb-2">Her Name</label> <input type="text" id="herName" name="herName" placeholder="Name of the woman who inspired you" class="input-field w-full px-4 py-3 rounded-xl" required>
+        </div>
+        <div><label for="relationship" class="block text-sm font-medium text-gray-700 mb-2">Relationship</label> <select id="relationship" name="relationship" class="input-field w-full px-4 py-3 rounded-xl" required> <option value="">Select relationship</option> <option value="Mother">Mother</option> <option value="Teacher">Teacher</option> <option value="Friend">Friend</option> <option value="Sister">Sister</option> <option value="Wife">Wife</option> <option value="Mentor">Mentor</option> <option value="Grandmother">Grandmother</option> <option value="Colleague">Colleague</option> <option value="Other">Other</option> </select>
+        </div>
+        <div><label for="message" class="block text-sm font-medium text-gray-700 mb-2"> Your Message <span id="wordCount" class="text-purple-600 text-xs">(0/150 words)</span> </label> <textarea id="message" name="message" rows="4" placeholder="Write your heartfelt message here..." class="input-field w-full px-4 py-3 rounded-xl resize-none" required></textarea>
+        </div><button type="submit" id="generateBtn" class="w-full btn-primary text-white px-6 py-4 rounded-xl font-semibold flex items-center justify-center gap-2"> <i data-lucide="sparkles" class="w-5 h-5"></i> Generate Card </button>
+       </form>
+      </div><!-- Live Preview Card -->
+      <div class="sticky top-24">
+       <div class="text-center mb-4"><span class="text-sm text-gray-500 font-medium">Live Preview</span>
+       </div>
+       <div id="previewCard" class="card-gradient rounded-3xl p-8 soft-shadow hover-lift relative overflow-hidden min-h-[400px] flex flex-col justify-between"><!-- Decorative Corner -->
+        <div class="absolute top-0 right-0 w-32 h-32 opacity-20">
+         <svg viewbox="0 0 100 100" fill="none"><circle cx="80" cy="20" r="60" fill="#9B7BB8" />
+         </svg>
+        </div>
+        <div class="absolute bottom-0 left-0 w-24 h-24 opacity-20">
+         <svg viewbox="0 0 100 100" fill="none"><circle cx="20" cy="80" r="50" fill="#F5D0E0" />
+         </svg>
+        </div>
+        <div class="relative z-10">
+         <div class="flex items-center gap-2 mb-6">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center"><i data-lucide="heart" class="w-6 h-6 text-white"></i>
+          </div>
+          <div>
+           <div id="previewRelationship" class="text-xs uppercase tracking-wider text-purple-600 font-medium">
+            My Inspiration
+           </div>
+           <div id="previewHerName" class="font-display text-2xl font-bold text-purple-900">
+            Her Name
+           </div>
+          </div>
+         </div>
+         <blockquote id="previewMessage" class="font-display text-xl text-gray-700 italic leading-relaxed mb-6">
+          "Your inspiring message will appear here..."
+         </blockquote>
+        </div>
+        <div class="relative z-10 flex items-center justify-between border-t border-purple-200/50 pt-4">
+         <div><span class="text-sm text-gray-500">With love from</span>
+          <div id="previewYourName" class="font-semibold text-purple-800">
+           Your Name
+          </div>
+         </div>
+         <div class="flex items-center gap-1 text-purple-400"><i data-lucide="heart" class="w-4 h-4 fill-current"></i> <span class="text-xs font-medium">She Inspires</span>
+         </div>
+        </div>
+       </div><!-- Share Section (Initially Hidden) -->
+       <div id="shareSection" class="hidden mt-6 bg-white/80 backdrop-blur-sm rounded-2xl p-6 soft-shadow fade-in">
+        <h3 class="font-semibold text-purple-900 mb-4 text-center">Share Your Card</h3>
+        <div class="flex items-center justify-center gap-3 flex-wrap"><button onclick="shareWhatsApp()" class="share-btn w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center soft-shadow" title="Share on WhatsApp">
+          <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg></button> <button onclick="shareInstagram()" class="share-btn w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 text-white flex items-center justify-center soft-shadow" title="Share on Instagram"> <i data-lucide="instagram" class="w-6 h-6"></i> </button> <button onclick="shareFacebook()" class="share-btn w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center soft-shadow" title="Share on Facebook"> <i data-lucide="facebook" class="w-6 h-6"></i> </button> <button onclick="shareTwitter()" class="share-btn w-12 h-12 rounded-full bg-black text-white flex items-center justify-center soft-shadow" title="Share on X/Twitter">
+          <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg></button> <button onclick="copyLink()" class="share-btn w-12 h-12 rounded-full bg-gray-700 text-white flex items-center justify-center soft-shadow" title="Copy Link"> <i data-lucide="link" class="w-5 h-5"></i> </button>
+        </div>
+        <p class="text-center text-sm text-gray-500 mt-4">Click any icon to share your inspiration</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Inspiration Wall -->
+   <section id="wall" class="py-16 px-4 bg-white/40">
+    <div class="max-w-7xl mx-auto">
+     <div class="text-center mb-12">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-purple-900 mb-4">Inspiration Wall</h2>
+      <p class="text-gray-600">Beautiful tributes from people around the world</p>
+     </div>
+     <div id="inspirationWall" class="masonry-grid"><!-- Cards will be populated here -->
+      <div class="text-center py-12 col-span-full">
+       <div class="inline-flex items-center gap-2 text-gray-400"><i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> <span>Loading inspirations...</span>
+       </div>
+      </div>
+     </div>
+     <div id="emptyWall" class="hidden text-center py-16">
+      <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-purple-100 flex items-center justify-center"><i data-lucide="heart" class="w-10 h-10 text-purple-400"></i>
+      </div>
+      <h3 class="font-display text-2xl text-purple-900 mb-2">Be the First to Inspire!</h3>
+      <p class="text-gray-500 mb-6">Create your card and start the wall of inspiration</p><a href="#create" class="inline-flex items-center gap-2 btn-primary text-white px-6 py-3 rounded-full"> <i data-lucide="plus" class="w-4 h-4"></i> Create First Card </a>
+     </div>
+    </div>
+   </section><!-- Featured Women Section -->
+   <section id="featured" class="py-16 px-4">
+    <div class="max-w-7xl mx-auto">
+     <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 bg-purple-100 px-4 py-2 rounded-full mb-4"><i data-lucide="trending-up" class="w-4 h-4 text-purple-600"></i> <span class="text-sm text-purple-700 font-medium">Trending Stories</span>
+      </div>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-purple-900 mb-4">Featured Inspiring Women</h2>
+      <p class="text-gray-600">Stories that touched hearts around the world</p>
+     </div>
+     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Featured Card 1 -->
+      <div class="bg-white rounded-3xl overflow-hidden soft-shadow hover-lift">
+       <div class="h-48 bg-gradient-to-br from-purple-400 to-pink-400 relative">
+        <div class="absolute inset-0 flex items-center justify-center">
+         <div class="w-24 h-24 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"><span class="text-5xl">👩‍🏫</span>
+         </div>
+        </div>
+        <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-medium text-purple-700"><i data-lucide="flame" class="w-3 h-3 inline-block mr-1"></i> Trending
+        </div>
+       </div>
+       <div class="p-6">
+        <div class="text-xs uppercase tracking-wider text-purple-600 font-medium mb-1">
+         Teacher
+        </div>
+        <h3 class="font-display text-xl font-bold text-purple-900 mb-2">Mrs. Sharma</h3>
+        <p class="text-gray-600 text-sm mb-4">"She believed in me when I didn't believe in myself. Every lesson was a life lesson."</p>
+        <div class="flex items-center justify-between"><span class="text-sm text-gray-400">By Priya M.</span>
+         <div class="flex items-center gap-1 text-pink-500"><i data-lucide="heart" class="w-4 h-4 fill-current"></i> <span class="text-sm">2.4k</span>
+         </div>
+        </div>
+       </div>
+      </div><!-- Featured Card 2 -->
+      <div class="bg-white rounded-3xl overflow-hidden soft-shadow hover-lift">
+       <div class="h-48 bg-gradient-to-br from-pink-400 to-rose-400 relative">
+        <div class="absolute inset-0 flex items-center justify-center">
+         <div class="w-24 h-24 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"><span class="text-5xl">👩‍👧</span>
+         </div>
+        </div>
+        <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-medium text-purple-700"><i data-lucide="award" class="w-3 h-3 inline-block mr-1"></i> Top Rated
+        </div>
+       </div>
+       <div class="p-6">
+        <div class="text-xs uppercase tracking-wider text-purple-600 font-medium mb-1">
+         Mother
+        </div>
+        <h3 class="font-display text-xl font-bold text-purple-900 mb-2">My Amma</h3>
+        <p class="text-gray-600 text-sm mb-4">"Her strength became my foundation. Her love became my superpower."</p>
+        <div class="flex items-center justify-between"><span class="text-sm text-gray-400">By Ananya K.</span>
+         <div class="flex items-center gap-1 text-pink-500"><i data-lucide="heart" class="w-4 h-4 fill-current"></i> <span class="text-sm">3.1k</span>
+         </div>
+        </div>
+       </div>
+      </div><!-- Featured Card 3 -->
+      <div class="bg-white rounded-3xl overflow-hidden soft-shadow hover-lift">
+       <div class="h-48 bg-gradient-to-br from-violet-400 to-purple-400 relative">
+        <div class="absolute inset-0 flex items-center justify-center">
+         <div class="w-24 h-24 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"><span class="text-5xl">👩‍💼</span>
+         </div>
+        </div>
+        <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-medium text-purple-700"><i data-lucide="star" class="w-3 h-3 inline-block mr-1"></i> Featured
+        </div>
+       </div>
+       <div class="p-6">
+        <div class="text-xs uppercase tracking-wider text-purple-600 font-medium mb-1">
+         Mentor
+        </div>
+        <h3 class="font-display text-xl font-bold text-purple-900 mb-2">Dr. Lakshmi</h3>
+        <p class="text-gray-600 text-sm mb-4">"She showed me that glass ceilings are meant to be shattered."</p>
+        <div class="flex items-center justify-between"><span class="text-sm text-gray-400">By Meera S.</span>
+         <div class="flex items-center gap-1 text-pink-500"><i data-lucide="heart" class="w-4 h-4 fill-current"></i> <span class="text-sm">1.8k</span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Premium Section -->
+   <section id="premium" class="py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+     <div class="relative bg-gradient-to-br from-purple-600 via-purple-700 to-pink-600 rounded-3xl p-8 sm:p-12 text-white overflow-hidden"><!-- Decorative Elements -->
+      <div class="absolute top-0 right-0 w-64 h-64 opacity-10">
+       <svg viewbox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="100" fill="white" />
+       </svg>
+      </div>
+      <div class="absolute bottom-0 left-0 w-48 h-48 opacity-10">
+       <svg viewbox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="80" fill="white" />
+       </svg>
+      </div>
+      <div class="relative z-10 text-center">
+       <div class="inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full mb-6"><i data-lucide="crown" class="w-4 h-4"></i> <span class="text-sm font-medium">Premium Quality</span>
+       </div>
+       <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4">Download HD Card</h2>
+       <p class="text-purple-100 mb-8 max-w-lg mx-auto">Get a high-resolution version of your inspiration card, perfect for printing, framing, or sharing in stunning quality.</p>
+       <div class="flex items-center justify-center gap-4 mb-8">
+        <div class="text-center"><i data-lucide="image" class="w-8 h-8 mx-auto mb-2 opacity-80"></i> <span class="text-sm opacity-80">4K Resolution</span>
+        </div>
+        <div class="w-px h-12 bg-white/30"></div>
+        <div class="text-center"><i data-lucide="printer" class="w-8 h-8 mx-auto mb-2 opacity-80"></i> <span class="text-sm opacity-80">Print Ready</span>
+        </div>
+        <div class="w-px h-12 bg-white/30"></div>
+        <div class="text-center"><i data-lucide="download" class="w-8 h-8 mx-auto mb-2 opacity-80"></i> <span class="text-sm opacity-80">Instant Download</span>
+        </div>
+       </div>
+       <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-sm mx-auto mb-6">
+        <div class="flex items-center justify-center gap-2 mb-2"><span class="text-3xl font-bold">₹79</span> <span class="text-sm opacity-70 line-through">₹199</span> <span class="bg-yellow-400 text-yellow-900 text-xs px-2 py-1 rounded-full font-medium">60% OFF</span>
+        </div>
+        <p class="text-sm opacity-70">Limited time offer</p>
+       </div><button onclick="showPremiumModal()" class="inline-flex items-center gap-2 bg-white text-purple-700 px-8 py-4 rounded-full font-semibold hover:bg-purple-50 transition-colors"> <i data-lucide="download" class="w-5 h-5"></i> Get Premium HD Card </button>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="bg-purple-900 text-white py-12 px-4">
+    <div class="max-w-7xl mx-auto">
+     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      <div>
+       <div class="flex items-center gap-2 mb-4">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center"><i data-lucide="heart" class="w-5 h-5 text-white"></i>
+        </div><span class="font-display text-xl font-bold">She Inspires</span>
+       </div>
+       <p class="text-purple-300 text-sm">Celebrating the extraordinary women who shape our lives, one card at a time.</p>
+      </div>
+      <div>
+       <h4 class="font-semibold mb-4">Quick Links</h4>
+       <ul class="space-y-2 text-purple-300 text-sm">
+        <li><a href="#create" class="hover:text-white transition-colors">Create Card</a></li>
+        <li><a href="#wall" class="hover:text-white transition-colors">Inspiration Wall</a></li>
+        <li><a href="#featured" class="hover:text-white transition-colors">Featured Stories</a></li>
+        <li><a href="#premium" class="hover:text-white transition-colors">Premium</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="font-semibold mb-4">Legal</h4>
+       <ul class="space-y-2 text-purple-300 text-sm">
+        <li><a href="#" onclick="showModal('about')" class="hover:text-white transition-colors">About Us</a></li>
+        <li><a href="#" onclick="showModal('contact')" class="hover:text-white transition-colors">Contact</a></li>
+        <li><a href="#" onclick="showModal('privacy')" class="hover:text-white transition-colors">Privacy Policy</a></li>
+        <li><a href="#" onclick="showModal('terms')" class="hover:text-white transition-colors">Terms of Service</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="font-semibold mb-4">Connect With Us</h4>
+       <div class="flex gap-3"><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-purple-800 flex items-center justify-center hover:bg-purple-700 transition-colors"> <i data-lucide="instagram" class="w-5 h-5"></i> </a> <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-purple-800 flex items-center justify-center hover:bg-purple-700 transition-colors"> <i data-lucide="facebook" class="w-5 h-5"></i> </a> <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-purple-800 flex items-center justify-center hover:bg-purple-700 transition-colors">
+         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+         </svg></a> <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-purple-800 flex items-center justify-center hover:bg-purple-700 transition-colors"> <i data-lucide="youtube" class="w-5 h-5"></i> </a>
+       </div>
+      </div>
+     </div>
+     <div class="border-t border-purple-800 pt-8 text-center text-purple-400 text-sm">
+      <p>Made with <i data-lucide="heart" class="w-4 h-4 inline-block text-pink-400 fill-current"></i> for all the inspiring women</p>
+      <p class="mt-2">© 2026 She Inspires Wall.Built By Lakshita.</p>
+     </div>
+    </div>
+   </footer><!-- Toast Notification -->
+   <div id="toast" class="toast"><span id="toastMessage">Link copied!</span>
+   </div><!-- Modal -->
+   <div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 max-h-[90%] overflow-y-auto relative"><button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"> <i data-lucide="x" class="w-5 h-5 text-gray-600"></i> </button>
+     <div id="modalContent"></div>
+    </div>
+   </div>
+  </div>
+  <script>
+    // Configuration
+    const defaultConfig = {
+      hero_headline: "Celebrate the Women Who Changed Our Lives",
+      hero_subheading: "Write a message for a woman who inspired you and create a beautiful shareable card.",
+      cta_button_text: "Create Your Inspiration Card",
+      background_color: "#FFFBFC",
+      primary_color: "#9B7BB8",
+      text_color: "#4A3F55",
+      accent_color: "#F5D0E0",
+      secondary_color: "#F8E8EE",
+      font_family: "Nunito",
+      font_size: 16
+    };
+
+    let config = { ...defaultConfig };
+    let allCards = [];
+    let generatedCard = null;
+
+    // Data Handler for Data SDK
+    const dataHandler = {
+      onDataChanged(data) {
+        allCards = data;
+        renderInspirationWall(data);
+        updateCardCount(data.length);
+      }
+    };
+
+    // Initialize SDKs
+    async function initializeApp() {
+      // Initialize Element SDK
+      if (window.elementSdk) {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange: async (newConfig) => {
+            config = { ...config, ...newConfig };
+            applyConfig(config);
+          },
+          mapToCapabilities: (cfg) => ({
+            recolorables: [
+              {
+                get: () => cfg.background_color || defaultConfig.background_color,
+                set: (v) => { cfg.background_color = v; window.elementSdk.setConfig({ background_color: v }); }
+              },
+              {
+                get: () => cfg.secondary_color || defaultConfig.secondary_color,
+                set: (v) => { cfg.secondary_color = v; window.elementSdk.setConfig({ secondary_color: v }); }
+              },
+              {
+                get: () => cfg.text_color || defaultConfig.text_color,
+                set: (v) => { cfg.text_color = v; window.elementSdk.setConfig({ text_color: v }); }
+              },
+              {
+                get: () => cfg.primary_color || defaultConfig.primary_color,
+                set: (v) => { cfg.primary_color = v; window.elementSdk.setConfig({ primary_color: v }); }
+              },
+              {
+                get: () => cfg.accent_color || defaultConfig.accent_color,
+                set: (v) => { cfg.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); }
+              }
+            ],
+            borderables: [],
+            fontEditable: {
+              get: () => cfg.font_family || defaultConfig.font_family,
+              set: (v) => { cfg.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+            },
+            fontSizeable: {
+              get: () => cfg.font_size || defaultConfig.font_size,
+              set: (v) => { cfg.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+            }
+          }),
+          mapToEditPanelValues: (cfg) => new Map([
+            ["hero_headline", cfg.hero_headline || defaultConfig.hero_headline],
+            ["hero_subheading", cfg.hero_subheading || defaultConfig.hero_subheading],
+            ["cta_button_text", cfg.cta_button_text || defaultConfig.cta_button_text]
+          ])
+        });
+        config = { ...defaultConfig, ...window.elementSdk.config };
+      }
+
+      // Initialize Data SDK
+      if (window.dataSdk) {
+        const initResult = await window.dataSdk.init(dataHandler);
+        if (!initResult.isOk) {
+          console.error("Failed to initialize Data SDK");
+          renderInspirationWall([]);
+        }
+      } else {
+        renderInspirationWall([]);
+      }
+
+      applyConfig(config);
+      lucide.createIcons();
+    }
+
+    // Apply configuration to UI
+    function applyConfig(cfg) {
+      const headline = document.getElementById('heroHeadline');
+      const subheading = document.getElementById('heroSubheading');
+      const ctaText = document.getElementById('ctaButtonText');
+
+      if (headline) headline.textContent = cfg.hero_headline || defaultConfig.hero_headline;
+      if (subheading) subheading.textContent = cfg.hero_subheading || defaultConfig.hero_subheading;
+      if (ctaText) ctaText.textContent = cfg.cta_button_text || defaultConfig.cta_button_text;
+
+      // Apply colors via CSS variables
+      document.documentElement.style.setProperty('--color-soft-purple', cfg.primary_color || defaultConfig.primary_color);
+      document.documentElement.style.setProperty('--color-light-pink', cfg.secondary_color || defaultConfig.secondary_color);
+      document.documentElement.style.setProperty('--color-blush', cfg.accent_color || defaultConfig.accent_color);
+      document.documentElement.style.setProperty('--color-cream', cfg.background_color || defaultConfig.background_color);
+      document.documentElement.style.setProperty('--color-text', cfg.text_color || defaultConfig.text_color);
+
+      // Apply font
+      const fontFamily = cfg.font_family || defaultConfig.font_family;
+      document.body.style.fontFamily = `${fontFamily}, 'Nunito', sans-serif`;
+
+      // Apply font size scaling
+      const baseSize = cfg.font_size || defaultConfig.font_size;
+      document.documentElement.style.fontSize = `${baseSize}px`;
+    }
+
+    // Update card count
+    function updateCardCount(count) {
+      const countEl = document.getElementById('cardCount');
+      if (countEl) {
+        countEl.textContent = count + 100; // Adding base count for visual appeal
+      }
+    }
+
+    // Render Inspiration Wall
+    function renderInspirationWall(data) {
+      const wall = document.getElementById('inspirationWall');
+      const emptyWall = document.getElementById('emptyWall');
+
+      if (!data || data.length === 0) {
+        wall.innerHTML = '';
+        emptyWall.classList.remove('hidden');
+        return;
+      }
+
+      emptyWall.classList.add('hidden');
+
+      const gradients = ['card-gradient', 'card-gradient-2', 'card-gradient-3'];
+      
+      wall.innerHTML = data.map((card, index) => `
+        <div class="masonry-item">
+          <div class="${gradients[index % 3]} rounded-2xl p-6 soft-shadow hover-lift relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 opacity-10">
+              <svg viewBox="0 0 100 100" fill="none">
+                <circle cx="60" cy="40" r="40" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="relative z-10">
+              <div class="text-xs uppercase tracking-wider text-purple-600 font-medium mb-1">${escapeHtml(card.relationship)}</div>
+              <h3 class="font-display text-xl font-bold text-purple-900 mb-3">${escapeHtml(card.herName)}</h3>
+              <p class="text-gray-600 text-sm mb-4 italic">"${escapeHtml(card.message)}"</p>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-400">— ${escapeHtml(card.yourName)}</span>
+                <button onclick="shareCard('${escapeHtml(card.herName)}', '${escapeHtml(card.message).substring(0, 50)}...')" 
+                  class="w-8 h-8 rounded-full bg-white/50 flex items-center justify-center hover:bg-white transition-colors">
+                  <i data-lucide="share-2" class="w-4 h-4 text-purple-600"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    // Escape HTML to prevent XSS
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text || '';
+      return div.innerHTML;
+    }
+
+    // Form handling
+    const form = document.getElementById('cardForm');
+    const messageInput = document.getElementById('message');
+    const wordCountEl = document.getElementById('wordCount');
+
+    // Word count
+    messageInput.addEventListener('input', function() {
+      const words = this.value.trim().split(/\s+/).filter(w => w.length > 0);
+      const count = words.length;
+      wordCountEl.textContent = `(${count}/150 words)`;
+      
+      if (count > 150) {
+        wordCountEl.classList.add('text-red-500');
+      } else {
+        wordCountEl.classList.remove('text-red-500');
+      }
+
+      updatePreview();
+    });
+
+    // Live preview updates
+    document.getElementById('yourName').addEventListener('input', updatePreview);
+    document.getElementById('herName').addEventListener('input', updatePreview);
+    document.getElementById('relationship').addEventListener('change', updatePreview);
+
+    function updatePreview() {
+      const yourName = document.getElementById('yourName').value || 'Your Name';
+      const herName = document.getElementById('herName').value || 'Her Name';
+      const relationship = document.getElementById('relationship').value || 'My Inspiration';
+      const message = document.getElementById('message').value || 'Your inspiring message will appear here...';
+
+      document.getElementById('previewYourName').textContent = yourName;
+      document.getElementById('previewHerName').textContent = herName;
+      document.getElementById('previewRelationship').textContent = relationship;
+      document.getElementById('previewMessage').textContent = `"${message}"`;
+    }
+
+    // Form submission
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const yourName = document.getElementById('yourName').value.trim();
+      const herName = document.getElementById('herName').value.trim();
+      const relationship = document.getElementById('relationship').value;
+      const message = document.getElementById('message').value.trim();
+
+      // Validate word count
+      const wordCount = message.split(/\s+/).filter(w => w.length > 0).length;
+      if (wordCount > 150) {
+        showToast('Please limit your message to 150 words');
+        return;
+      }
+
+      // Check data limit
+      if (allCards.length >= 999) {
+        showToast('The inspiration wall is full! Thank you for your love.');
+        return;
+      }
+
+      const generateBtn = document.getElementById('generateBtn');
+      generateBtn.disabled = true;
+      generateBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Creating...';
+
+      const cardData = {
+        id: Date.now().toString(),
+        yourName,
+        herName,
+        relationship,
+        message,
+        createdAt: new Date().toISOString()
+      };
+
+      if (window.dataSdk) {
+        const result = await window.dataSdk.create(cardData);
+        if (result.isOk) {
+          generatedCard = cardData;
+          document.getElementById('shareSection').classList.remove('hidden');
+          showToast('Your inspiration card is ready! 🎉');
+          
+          // Scroll to share section
+          document.getElementById('shareSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          showToast('Something went wrong. Please try again.');
+        }
+      } else {
+        generatedCard = cardData;
+        document.getElementById('shareSection').classList.remove('hidden');
+        showToast('Your inspiration card is ready! 🎉');
+      }
+
+      generateBtn.disabled = false;
+      generateBtn.innerHTML = '<i data-lucide="sparkles" class="w-5 h-5"></i> Generate Card';
+      lucide.createIcons();
+    });
+
+    // Share functions
+    function getShareText() {
+      if (!generatedCard) return '';
+      return `🌸 She Inspires: ${generatedCard.herName}\n\n"${generatedCard.message}"\n\n— ${generatedCard.yourName}\n\nCreate your own inspiration card at She Inspires Wall! 💜`;
+    }
+
+    function getShareUrl() {
+      return window.location.href;
+    }
+
+    function shareWhatsApp() {
+      const text = encodeURIComponent(getShareText());
+      window.open(`https://wa.me/?text=${text}`, '_blank');
+    }
+
+    function shareInstagram() {
+      // Instagram doesn't support direct sharing, so we copy and guide user
+      copyToClipboard(getShareText());
+      showToast('Caption copied! Open Instagram to share your story 📸');
+    }
+
+    function shareFacebook() {
+      const url = encodeURIComponent(getShareUrl());
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${encodeURIComponent(getShareText())}`, '_blank');
+    }
+
+    function shareTwitter() {
+      const text = encodeURIComponent(getShareText().substring(0, 280));
+      window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+    }
+
+    function copyLink() {
+      copyToClipboard(getShareText() + '\n\n' + getShareUrl());
+      showToast('Link and message copied to clipboard! 📋');
+    }
+
+    function shareCard(name, message) {
+      const text = `🌸 ${name} inspires me: "${message}" — Create your own at She Inspires Wall!`;
+      copyToClipboard(text);
+      showToast('Share text copied! 📋');
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).catch(() => {
+        // Fallback for older browsers
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      });
+    }
+
+    // Toast notification
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toastMessage');
+      toastMessage.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Modal functions
+    function showModal(type) {
+      const modal = document.getElementById('modal');
+      const content = document.getElementById('modalContent');
+      
+      const modals = {
+        about: `
+          <h2 class="font-display text-2xl font-bold text-purple-900 mb-4">About She Inspires</h2>
+          <p class="text-gray-600 mb-4">She Inspires Wall is a platform dedicated to celebrating the extraordinary women who shape our lives. From mothers and teachers to mentors and friends, every woman has a story worth telling.</p>
+          <p class="text-gray-600">Create beautiful tribute cards, share them with the world, and join a global community of gratitude and inspiration.</p>
+        `,
+        contact: `
+          <h2 class="font-display text-2xl font-bold text-purple-900 mb-4">Contact Us</h2>
+          <p class="text-gray-600 mb-4">We'd love to hear from you! Reach out with questions, feedback, or partnership inquiries.</p>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3 text-gray-600">
+              <i data-lucide="mail" class="w-5 h-5 text-purple-600"></i>
+              <span>hello@sheinspireswall.com</span>
+            </div>
+            <div class="flex items-center gap-3 text-gray-600">
+              <i data-lucide="instagram" class="w-5 h-5 text-purple-600"></i>
+              <span>@sheinspireswall</span>
+            </div>
+          </div>
+        `,
+        privacy: `
+          <h2 class="font-display text-2xl font-bold text-purple-900 mb-4">Privacy Policy</h2>
+          <p class="text-gray-600 mb-4">Your privacy matters to us. We collect minimal data necessary to provide our services.</p>
+          <ul class="text-gray-600 space-y-2 text-sm">
+            <li>• We store your submitted cards to display on the inspiration wall</li>
+            <li>• We don't sell or share your personal data with third parties</li>
+            <li>• You can request deletion of your content at any time</li>
+            <li>• We use cookies only for essential site functionality</li>
+          </ul>
+        `,
+        terms: `
+          <h2 class="font-display text-2xl font-bold text-purple-900 mb-4">Terms of Service</h2>
+          <p class="text-gray-600 mb-4">By using She Inspires Wall, you agree to:</p>
+          <ul class="text-gray-600 space-y-2 text-sm">
+            <li>• Submit only respectful, appropriate content</li>
+            <li>• Not impersonate others or submit false information</li>
+            <li>• Allow your submissions to be displayed publicly</li>
+            <li>• Respect the intellectual property of others</li>
+          </ul>
+        `
+      };
+
+      content.innerHTML = modals[type] || '';
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      lucide.createIcons();
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function showPremiumModal() {
+      const modal = document.getElementById('modal');
+      const content = document.getElementById('modalContent');
+      
+      content.innerHTML = `
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center">
+            <i data-lucide="crown" class="w-8 h-8 text-white"></i>
+          </div>
+          <h2 class="font-display text-2xl font-bold text-purple-900 mb-2">Premium HD Card</h2>
+          <p class="text-gray-600 mb-6">Get a stunning high-resolution version of your inspiration card!</p>
+          
+          <div class="bg-purple-50 rounded-2xl p-4 mb-6">
+            <div class="flex items-center justify-center gap-2 mb-2">
+              <span class="text-3xl font-bold text-purple-900">₹79</span>
+              <span class="text-sm text-gray-400 line-through">₹199</span>
+            </div>
+            <p class="text-xs text-purple-600">Limited time offer - 60% off!</p>
+          </div>
+          
+          <div class="space-y-3 text-left mb-6">
+            <div class="flex items-center gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+              <span class="text-gray-600">4K Resolution (3840 × 2160)</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+              <span class="text-gray-600">Print-ready quality</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+              <span class="text-gray-600">No watermark</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+              <span class="text-gray-600">Instant download</span>
+            </div>
+          </div>
+          
+          <p class="text-sm text-gray-500 mb-4">This is a demo feature. Payment processing would be integrated here.</p>
+          
+          <button onclick="closeModal()" class="w-full btn-primary text-white py-3 rounded-xl font-semibold">
+            Coming Soon!
+          </button>
+        </div>
+      `;
+      
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      lucide.createIcons();
+    }
+
+    // Close modal on outside click
+    document.getElementById('modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    // Close mobile menu when clicking links
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.add('hidden');
+      });
+    });
+
+    // Initialize app
+    initializeApp();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d90bee600a31c67',t:'MTc3Mjk2MTQzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
